@@ -1,0 +1,20 @@
+{
+  "name": "centro-mando-ungrd",
+  "label": "Centro de mando UNGRD",
+  "type": "widget",
+  "version": "1.21.0",
+  "exbVersion": "1.21.0",
+  "author": "UNGRD",
+  "description": "Centro de mando multisectorial conectado al web map de afectaciones UNGRD: panorama por sector, índice de criticidad, matriz departamento × sector, ranking de municipios y lista de infraestructura crítica, con filtros que se aplican al mapa.",
+  "copyright": "2026 UNGRD",
+  "license": "http://www.apache.org/licenses/LICENSE-2.0",
+  "properties": {},
+  "dependency": "jimu-arcgis",
+  "translatedLocales": [
+    "es"
+  ],
+  "defaultSize": {
+    "width": 440,
+    "height": 820
+  }
+}

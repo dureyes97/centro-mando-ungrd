@@ -1,0 +1,7 @@
+{
+  "title": "Centro de mando UNGRD",
+  "subtitle": "Afectación de infraestructura por sector",
+  "effectMode": "dim",
+  "extentDefault": false,
+  "topCount": 12
+}

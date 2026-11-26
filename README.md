@@ -61,17 +61,38 @@ Las palabras clave de cada nivel y los colores de cada sector están en [`src/se
 2. Copie `config.json` en esa carpeta y también en `resources/config/` dentro de ella.
 3. Cambie `itemId` y `portalUrl` en `dataSources` si usa otro web map u otra organización.
 
-## Uso en ArcGIS Online
+## App publicada (GitHub Pages + ArcGIS Online)
 
-La carpeta [`docs/centro-mando-ungrd`](docs/centro-mando-ungrd) contiene el widget compilado en modo producción y se publica con GitHub Pages. ArcGIS Online lo registra a partir de esta URL:
+ArcGIS Online no permite registrar widgets personalizados en su Experience Builder (solo ArcGIS Enterprise 11.0 o posterior). Por eso la experiencia completa se descarga desde la Developer Edition y se publica como sitio estático en [`docs/app`](docs/app):
+
+```
+https://dureyes97.github.io/centro-mando-ungrd/app/
+```
+
+En ArcGIS Online se referencia como un elemento **Aplicación → Web mapping** con esa URL. El Client ID de ese elemento va en `docs/app/cdn/1/config.json` (`attributes.clientId`), y la URL de arriba debe figurar como URL de redirección en sus credenciales.
+
+Para regenerar la app tras cambiar el widget:
+
+```
+cd client
+pnpm run build:for-download
+cd ../server
+node -e "require('./src/middlewares/dev/apps/app-download.js').zipApp('7', 'app7.zip', '<CLIENT_ID>', { locales: ['es'] })"
+```
+
+Luego descomprima `app7.zip` sobre `docs/app`.
+
+## Registro del widget en ArcGIS Enterprise
+
+La carpeta [`docs/centro-mando-ungrd`](docs/centro-mando-ungrd) contiene el widget compilado en modo producción y se publica con GitHub Pages. Un portal de ArcGIS Enterprise 11.0 o posterior puede registrarlo a partir de esta URL:
 
 ```
 https://dureyes97.github.io/centro-mando-ungrd/centro-mando-ungrd/manifest.json
 ```
 
-1. En ArcGIS Online: **Contenido → Nuevo elemento → Widget de Experience Builder**.
-2. Pegue la URL del `manifest.json`, asigne un título y guarde.
-3. En Experience Builder de ArcGIS Online: **Insertar widget → Personalizado → Centro de mando UNGRD**.
+1. Un administrador del portal entra en **Mi contenido → Agregar elemento → Una aplicación → Widget de Experience Builder**.
+2. Pega la URL del `manifest.json`, asigna un título y guarda.
+3. En Experience Builder del portal: **Insertar widget → Personalizado → Centro de mando UNGRD**.
 
 Para actualizar la versión en línea, compile en producción y copie el resultado en `docs/centro-mando-ungrd`:
 
@@ -80,7 +101,7 @@ cd client
 pnpm exec cross-env NODE_ENV=production OUTPUT_FOLDER=./dist-prod webpack --mode production
 ```
 
-La salida queda en `client/dist-prod/widgets/centro-mando-ungrd`. El `exbVersion` del manifest (1.21.0) no puede ser mayor que la versión de Experience Builder de ArcGIS Online.
+La salida queda en `client/dist-prod/widgets/centro-mando-ungrd`. El `exbVersion` del manifest (1.21.0) no puede ser mayor que la versión de Experience Builder del portal.
 
 ## Estructura
 
@@ -97,7 +118,8 @@ widgets/centro-mando-ungrd/
 app/
 └── config.json          # experiencia de ejemplo
 docs/
-└── centro-mando-ungrd/  # widget compilado (GitHub Pages → ArcGIS Online)
+├── app/                 # experiencia completa descargada (GitHub Pages)
+└── centro-mando-ungrd/  # widget compilado (para ArcGIS Enterprise)
 ```
 
 Probado con ArcGIS Experience Builder 1.21 y ArcGIS Maps SDK for JavaScript 5.1.

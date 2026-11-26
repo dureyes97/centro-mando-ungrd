@@ -1,0 +1,171 @@
+{
+  "pages": {
+    "page_0": {
+      "id": "page_0",
+      "mode": "FIT_WINDOW",
+      "type": "NORMAL",
+      "layout": {
+        "LARGE": "layout_0"
+      },
+      "isDefault": true,
+      "isVisible": true,
+      "label": "Centro de mando"
+    }
+  },
+  "layouts": {
+    "layout_0": {
+      "type": "FIXED",
+      "content": {
+        "0": {
+          "type": "WIDGET",
+          "widgetId": "widget_2",
+          "bbox": {
+            "left": "0.0%",
+            "right": "0.0%",
+            "top": "0.0%",
+            "bottom": "0.0%",
+            "width": "100.0%",
+            "height": "100.0%"
+          },
+          "setting": {
+            "autoProps": {
+              "left": false,
+              "right": true,
+              "top": false,
+              "bottom": true
+            }
+          }
+        },
+        "1": {
+          "type": "WIDGET",
+          "widgetId": "widget_1",
+          "bbox": {
+            "left": "71.0%",
+            "right": "0.8%",
+            "top": "1.5%",
+            "bottom": "1.5%",
+            "width": "28.2%",
+            "height": "97.0%"
+          },
+          "setting": {
+            "autoProps": {
+              "left": true,
+              "right": false,
+              "top": true,
+              "bottom": false
+            },
+            "vCenter": false,
+            "hCenter": false
+          }
+        }
+      },
+      "order": [
+        "0",
+        "1"
+      ]
+    },
+    "layout_1": {
+      "content": {},
+      "type": "FIXED",
+      "label": "Map FixedLayout"
+    }
+  },
+  "exbVersion": "1.21.0",
+  "mainSizeMode": "LARGE",
+  "theme": "themes/master/",
+  "forBuilderAttributes": {
+    "lockLayout": false
+  },
+  "template": "blankfullscreen",
+  "widgets": {
+    "widget_1": {
+      "uri": "widgets/centro-mando-ungrd/",
+      "version": "1.21.0",
+      "label": "Centro de mando UNGRD",
+      "config": {
+        "title": "Centro de mando UNGRD",
+        "subtitle": "Afectación de infraestructura por sector",
+        "effectMode": "dim",
+        "extentDefault": false,
+        "topCount": 12
+      },
+      "id": "widget_1",
+      "useMapWidgetIds": [
+        "widget_2"
+      ]
+    },
+    "widget_2": {
+      "uri": "widgets/arcgis/arcgis-map/",
+      "version": "1.21.0",
+      "label": "Mapa UNGRD",
+      "config": {
+        "toolConfig": {
+          "canZoom": true,
+          "canHome": true,
+          "canSearch": true,
+          "canNavigation": true,
+          "canLayers": true,
+          "canBaseMap": true,
+          "canLegend": true,
+          "canScaleBar": true,
+          "canFullScreen": true
+        },
+        "isUseCustomMapState": false,
+        "initialMapDataSourceID": "dataSource_1",
+        "initialMapState": null,
+        "scaleRange": null,
+        "customLODs": null
+      },
+      "id": "widget_2",
+      "layouts": {
+        "MapFixedLayout": {
+          "LARGE": "layout_1"
+        }
+      },
+      "useDataSources": [
+        {
+          "dataSourceId": "dataSource_1",
+          "mainDataSourceId": "dataSource_1"
+        }
+      ]
+    }
+  },
+  "widgetsManifest": {},
+  "views": {},
+  "sections": {},
+  "dialogs": {},
+  "messageConfigs": {},
+  "attributes": {
+    "portalUrl": "https://ambiente-esri-co.maps.arcgis.com",
+    "isWebTier": false,
+    "clientId": "PENDIENTE_CLIENT_ID",
+    "express": false,
+    "title": "Centro de mando UNGRD",
+    "description": "Panorama, matriz territorial e infraestructura crítica por sector",
+    "type": "Web Experience",
+    "thumbnail": null
+  },
+  "timestamp": 1795651200000,
+  "sharedThemeVariables": {
+    "header": {
+      "color": "#0b1220"
+    },
+    "body": {},
+    "button": {}
+  },
+  "mainLocale": "es",
+  "dataSources": {
+    "dataSource_1": {
+      "id": "dataSource_1",
+      "type": "WEB_MAP",
+      "sourceLabel": "UNGRD",
+      "itemId": "3687f240c3d94fcab51d62ea010aebda",
+      "portalUrl": "https://ambiente-esri-co.maps.arcgis.com"
+    }
+  },
+  "pageStructure": [
+    {
+      "page_0": []
+    }
+  ]
+}
