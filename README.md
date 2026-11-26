@@ -61,6 +61,27 @@ Las palabras clave de cada nivel y los colores de cada sector están en [`src/se
 2. Copie `config.json` en esa carpeta y también en `resources/config/` dentro de ella.
 3. Cambie `itemId` y `portalUrl` en `dataSources` si usa otro web map u otra organización.
 
+## Uso en ArcGIS Online
+
+La carpeta [`docs/centro-mando-ungrd`](docs/centro-mando-ungrd) contiene el widget compilado en modo producción y se publica con GitHub Pages. ArcGIS Online lo registra a partir de esta URL:
+
+```
+https://dureyes97.github.io/centro-mando-ungrd/centro-mando-ungrd/manifest.json
+```
+
+1. En ArcGIS Online: **Contenido → Nuevo elemento → Widget de Experience Builder**.
+2. Pegue la URL del `manifest.json`, asigne un título y guarde.
+3. En Experience Builder de ArcGIS Online: **Insertar widget → Personalizado → Centro de mando UNGRD**.
+
+Para actualizar la versión en línea, compile en producción y copie el resultado en `docs/centro-mando-ungrd`:
+
+```
+cd client
+pnpm exec cross-env NODE_ENV=production OUTPUT_FOLDER=./dist-prod webpack --mode production
+```
+
+La salida queda en `client/dist-prod/widgets/centro-mando-ungrd`. El `exbVersion` del manifest (1.21.0) no puede ser mayor que la versión de Experience Builder de ArcGIS Online.
+
 ## Estructura
 
 ```
@@ -75,6 +96,8 @@ widgets/centro-mando-ungrd/
     └── setting/setting.tsx
 app/
 └── config.json          # experiencia de ejemplo
+docs/
+└── centro-mando-ungrd/  # widget compilado (GitHub Pages → ArcGIS Online)
 ```
 
 Probado con ArcGIS Experience Builder 1.21 y ArcGIS Maps SDK for JavaScript 5.1.
